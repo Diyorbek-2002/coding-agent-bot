@@ -1,0 +1,15 @@
+services:
+  - type: worker
+    name: coding-agent-bot
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: GROQ_MODEL
+        value: llama-3.3-70b-versatile
+      - key: MAX_RETRIES
+        value: "3"
