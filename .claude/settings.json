@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python*)",
+      "Bash(pip*)",
+      "Bash(python3*)",
+      "Bash(bash .claude/hooks/*)",
+      "Write(*)",
+      "Read(*)",
+      "Edit(*)"
+    ],
+    "deny": [
+      "Bash(rm -rf*)",
+      "Bash(sudo*)"
+    ]
+  },
+  "hooks": {
+    "PostFileSave": [
+      {
+        "matcher": ".*\\.py$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/post_file_save.sh \"$CLAUDE_FILE_PATH\""
+          }
+        ]
+      }
+    ]
+  }
+}
